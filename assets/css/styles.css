@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+header {
+    padding: 15px;
+    background-color: orange;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+header nav div h1 {
+    margin-left: 20px;
+    font-size: 30px;
+    text-decoration: none;
+    flex: 1 1 auto;
+    color: white;
+}
+
+header nav div ul {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: end;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+header nav div ul li {
+    color: white;
+    margin: 10px;
+    font-size: 20px;
+}
+
+button {
+    padding: 10px;
+    margin: 20px;
+    background-color: rgb(247, 247, 247);
+    color: rgb(255, 191, 73);
+    font-size: large;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 10px;
+}
