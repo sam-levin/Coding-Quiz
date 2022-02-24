@@ -48,3 +48,14 @@ button {
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     border-radius: 10px;
 }
+
+.quiz-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+#starter {
+    font-size: 30px;
+    padding: 20px 50px 20px 50px;
+}

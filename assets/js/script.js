@@ -13,68 +13,67 @@
 var qaEl = document.querySelector("#question-container");
 var questionEl = document.querySelector("#questions");
 var answerbox = document.getElementById("answers")
-var startBtnEl = document.getElementById("start-btn")
-
-var questionArray = [2,3];
-// set q = question array[i][0], set answerarray to questionarray[i][1] 
-
-
-var q1 = "What is your name?"
-var a1Array = [["Sam","true"],["Chris","false"],["Bailey","false"],["John","false"]]
-
-
-var q2 = "What is JS short for?"
-var a2Array = [["JustSoup","false"],["JeanShorts","false"],["JelloShots","false"],["JavaScript","true"]];
-
-var appendtoarray = function (question, answer) {
-    let QAArray = [];
-    QAArray.push(question);
-    QAArray.push(answer); 
-    questionArray.push(QAArray)   
-    console.log(QAArray)  
-} 
-
-
-// in this case, "Sam" is the correct answer, 
-// how do we determine if an answer is the correct one
-// will it be within the array itself? ex. [["answer A", true],["answer b", false]]
-// or should it be a separate array
+var startBtnEl = document.getElementById("starter")
 
 
 
 
+// make objects 
+
+const questions = [
+    {
+        title: "question1",
+        question: "What is your name",
+        answers: ["Sam",
+        "Mark",
+        "Todd",
+        "Bailey"]
+    }
+]
+
+//startQuiz(i);
+// maybe a while loop within the for loop?
+var current = 0;
 
 
+// this should have an input that lets it know which one it is
+var getqanda = function () {
+        var q = "Penis"
+        var answerlist = answerarray[i];
+        startQuiz(q, answerlist)
+}
 
-var createQuestionEl = function (index) {
+var startQuiz = function(q,answerarray) {
+    // there should be something here that gets rid of the start button
+    startBtnEl.remove();
+    createQuestionEl(q);
+    createAnswersEl(answerarray);
+    
+    // maybe this is in a for loop, for i in range of question array?
+}
+
+//when start quiz is done, it should return to the top of the for loop... should start quiz have nextquestion built into it?
+
+var createQuestionEl = function (q) {
     var newQEl = document.createElement("h1");
-    newQEl.innerHTML = q1;
+    newQEl.innerHTML = q;
     newQEl.className = "question"
     questionEl.appendChild(newQEl);
 }
 
-var createAnswersEl = function (index) {
-    for (i = 0; i < a1Array.length; i ++){
+var createAnswersEl = function (answerarray) {
+    for (i = 0; i < answerarray.length; i ++){
         var newAEl = document.createElement("button");
-        newAEl.innerHTML = a1Array[i][0];
+        newAEl.innerHTML = answerarray[i][0];
         newAEl.className = "answer-button"
-        newAEl.setAttribute("data-tf",a1Array[i][1]);
+        newAEl.setAttribute("data-tf",answerarray[i][1]);
         answerbox.appendChild(newAEl);
         newAEl.addEventListener("click",answerQuestion);
 
     }
 }
 
-var startQuiz = function() {
-    // there should be something here that gets rid of the start button
-    
-    for (i = 0; i < questionArray.length; i++) {
-        createQuestionEl(questionArray[0][i]);
-        createAnswersEl(questionArray[1][i]);
-    
-    }
-    // maybe this is in a for loop, for i in range of question array?
-}
+
 
 //var nextquestion = function(){
 
@@ -90,6 +89,8 @@ var deleteQnA = function() {
         var individualanswer = atodelete.item(i);
         individualanswer.remove();
     }
+    console.log("onto the next question!")
+
 }
 
 
@@ -97,10 +98,9 @@ var answerQuestion = function(event) {
     var chosenbtn = event.target;
     var trueorfalse = chosenbtn.getAttribute("data-tf");
     // if the data-tf is true, then console log true, 
-    if (trueorfalse === "true") {
+    if (trueorfalse == true) {
         console.log("True!")
         deleteQnA();
-
         // on true, it should go to the next question
         // nextquestion();
     } else {
@@ -110,4 +110,4 @@ var answerQuestion = function(event) {
     }
 }
 
-startBtnEl.addEventListener("click", startQuiz);
+startBtnEl.addEventListener("click", getqanda);
