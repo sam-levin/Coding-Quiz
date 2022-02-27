@@ -12,40 +12,62 @@
 
 var qaEl = document.querySelector("#question-container");
 var questionEl = document.querySelector("#questions");
-var answerbox = document.getElementById("answers")
-var startBtnEl = document.getElementById("starter")
-
+var answerbox = document.getElementById("answers");
+var startBtnEl = document.getElementById("starter");
 
 
 
 // make objects 
-
 const questions = [
     {
         title: "question1",
-        question: "What is your name",
+        question: "What is your name?",
         answers: ["Sam",
         "Mark",
         "Todd",
-        "Bailey"]
+        "Bailey"],
+        correctanswer: "Sam"
+    },
+    {
+        title: "question2",
+        question: "What is your age",
+        answers: [20,
+        30,
+        40,
+        22],
+        correctanswer: 22
+    },
+    {
+        title: "question3",
+        question: "Penis?",
+        answers: ["Sam",
+        "Mark",
+        "Todd",
+        "Bailey"],
+        correctanswer: "Sam"
     }
-]
+
+];
 
 //startQuiz(i);
-// maybe a while loop within the for loop?
-var current = 0;
+var questionnum = 0;
+
 
 
 // this should have an input that lets it know which one it is
-var getqanda = function () {
-        var q = "Penis"
-        var answerlist = answerarray[i];
-        startQuiz(q, answerlist)
+var getqanda = function (currentq) {
+    startBtnEl.remove();
+    let currentquestion = questions[currentq];
+    var q = currentquestion.question;
+    var answerlist = currentquestion.answers;
+            
+    startQuiz(q, answerlist)
+    
+    
+       
 }
 
 var startQuiz = function(q,answerarray) {
-    // there should be something here that gets rid of the start button
-    startBtnEl.remove();
     createQuestionEl(q);
     createAnswersEl(answerarray);
     
@@ -64,9 +86,9 @@ var createQuestionEl = function (q) {
 var createAnswersEl = function (answerarray) {
     for (i = 0; i < answerarray.length; i ++){
         var newAEl = document.createElement("button");
-        newAEl.innerHTML = answerarray[i][0];
+        newAEl.innerHTML = answerarray[i];
         newAEl.className = "answer-button"
-        newAEl.setAttribute("data-tf",answerarray[i][1]);
+        //newAEl.setAttribute("data-tf",answerarray[i][1]);
         answerbox.appendChild(newAEl);
         newAEl.addEventListener("click",answerQuestion);
 
@@ -89,25 +111,33 @@ var deleteQnA = function() {
         var individualanswer = atodelete.item(i);
         individualanswer.remove();
     }
-    console.log("onto the next question!")
 
 }
 
+var gethighscore = function() {
+    console.log("buttholes")
+}
 
 var answerQuestion = function(event) {
     var chosenbtn = event.target;
-    var trueorfalse = chosenbtn.getAttribute("data-tf");
-    // if the data-tf is true, then console log true, 
-    if (trueorfalse == true) {
+    // define the right answer as questions[questionnum].
+    let rightanswer = questions[questionnum].correctanswer
+    if (rightanswer = chosenbtn) {
         console.log("True!")
         deleteQnA();
+        questionnum ++;
+        if (questionnum = questions.length) {
+            gethighscore();
+        }
+        getqanda(questionnum)
         // on true, it should go to the next question
         // nextquestion();
     } else {
         console.log("false :(")
         deleteQnA();
-        // on false, it should subtract time
+        questionnum ++;
+        getqanda(questionnum);
     }
 }
 
-startBtnEl.addEventListener("click", getqanda);
+startBtnEl.addEventListener("click", function() {getqanda(questionnum)});
