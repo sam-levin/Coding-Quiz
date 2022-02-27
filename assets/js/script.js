@@ -115,28 +115,32 @@ var deleteQnA = function() {
 }
 
 var gethighscore = function() {
-    console.log("buttholes")
+    console.log("get high score function ran successfully")
 }
 
 var answerQuestion = function(event) {
     var chosenbtn = event.target;
     // define the right answer as questions[questionnum].
-    let rightanswer = questions[questionnum].correctanswer
-    if (rightanswer = chosenbtn) {
+    let rightanswer = questions[questionnum].correctanswer;
+    let answerchosen = chosenbtn.textContent;
+    if (rightanswer == answerchosen) {
         console.log("True!")
         deleteQnA();
         questionnum ++;
-        if (questionnum = questions.length) {
+        if (questionnum >= questions.length) {
             gethighscore();
+        } else {
+            getqanda(questionnum);
         }
-        getqanda(questionnum)
-        // on true, it should go to the next question
-        // nextquestion();
     } else {
         console.log("false :(")
         deleteQnA();
         questionnum ++;
-        getqanda(questionnum);
+        if (questionnum >= questions.length) {
+            gethighscore();
+        } else {
+            getqanda(questionnum);
+        }
     }
 }
 
