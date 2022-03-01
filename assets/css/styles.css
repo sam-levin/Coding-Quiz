@@ -50,12 +50,46 @@ button {
 }
 
 .quiz-container {
+    padding: 10px;
     display: flex;
     justify-content: center;
-    padding: 10px;
+    text-align: center;
+}
+
+#question-container {
+    justify-content: center;
+}
+
+#answers {
+    justify-content: center;
 }
 
 #starter {
     font-size: 30px;
     padding: 20px 50px 20px 50px;
+}
+
+
+
+.holder {
+    padding: 10px 10px 10px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.holder h2 {
+    padding: 10px;
+}
+
+
+.highscore-text {
+    padding: 5px 0px 10px 5px;
+}
+
+.timerholder {
+    padding: 10px 10px 10px 0px;
+    display: flex;
+    justify-content: center;
+
 }
